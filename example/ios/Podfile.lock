@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - zekingappupgrade (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - zekingappupgrade (from `.symlinks/plugins/zekingappupgrade/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  zekingappupgrade:
+    :path: ".symlinks/plugins/zekingappupgrade/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  zekingappupgrade: 48aafcf21e6365c4c6982b23160ac8e4236b0fb5
+
+PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
+
+COCOAPODS: 1.9.1
