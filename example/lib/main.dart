@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:zekingappupgrade/zekingappupgrade.dart';
+import 'package:zekingappupgrade_example/version_update_dialog.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   String appName;
   String packageName;
   String version;
@@ -30,16 +30,11 @@ class _MyAppState extends State<MyApp> {
     getPackageInfo();
   }
 
-
-
-
   Future<void> getPackageInfo() async {
     ZekingPackageInfo zekingPackageInfo;
     try {
-       zekingPackageInfo = await Zekingappupgrade.getPackageInfo;
-    } on PlatformException {
-
-    }
+      zekingPackageInfo = await ZekingAppUpgrade.getPackageInfo;
+    } on PlatformException {}
 
     if (!mounted) return;
 
@@ -50,7 +45,6 @@ class _MyAppState extends State<MyApp> {
       buildNumber = zekingPackageInfo.buildNumber;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +60,17 @@ class _MyAppState extends State<MyApp> {
             Text('version: $version\n'),
             Text('buildNumber: $buildNumber\n'),
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
 //                Zekingappupgrade.toAppStore('id1197227551');
 //                Zekingappupgrade.toAppStore('id629774477');
-                Zekingappupgrade.iosToAppStore('id393765873');
+                ZekingAppUpgrade.iosToAppStore('id393765873');
               },
               child: Text('跳转到AppStroe'),
             ),
             RaisedButton(
-              onPressed: (){
-                Zekingappupgrade.iosDownloadEnterpriseIpa('https://it-home.vip/test/manifest.plist');
+              onPressed: () {
+                ZekingAppUpgrade.iosDownloadEnterpriseIpa(
+                    'https://it-home.vip/test/manifest.plist');
 //                Zekingappupgrade.downloadIpa('itms-services://?action=download-manifest&url=https://it-home.vip/test/manifest.plist');
               },
               child: Text('下载企业级app'),
@@ -90,23 +85,55 @@ class _MyAppState extends State<MyApp> {
               child: Text('通过appid获取appStroe上app的版本'),
             ),
             Text('AppStore上的应用信息: \n$appStoreInfo'),
+            CustomDialogButtom(),
           ],
         ),
       ),
     );
   }
 
-  void getNewVersionName() async{
-    newVersionName = await Zekingappupgrade.iosGestNewVersion('https://it-home.vip/test/manifest.plist');
-    setState(() {
-    });
+  void getNewVersionName() async {
+    newVersionName = await ZekingAppUpgrade.iosGestNewVersion(
+        'https://it-home.vip/test/manifest.plist');
+    setState(() {});
   }
 
-  void getAppStorePackageInfo() async{
-    ZekingAppStorePackageInfo info = await Zekingappupgrade.iosGetAppStorePackageInfo('393765873',isChina: true);
+  void getAppStorePackageInfo() async {
+    ZekingAppStorePackageInfo info =
+        await ZekingAppUpgrade.iosGetAppStorePackageInfo('393765873',
+            isChina: true);
     setState(() {
-      appStoreInfo = info.lineVersion + '\n' + info.releaseNotes + '\n' + info.trackViewUrl;
+      appStoreInfo = info.lineVersion +
+          '\n' +
+          info.releaseNotes +
+          '\n' +
+          info.trackViewUrl;
     });
-
   }
+}
+
+class CustomDialogButtom extends StatefulWidget {
+  @override
+  _CustomDialogButtomState createState() => _CustomDialogButtomState();
+}
+
+class _CustomDialogButtomState extends State<CustomDialogButtom> {
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      onPressed: () => showVersionUpdateDialog(
+        context,
+        false,
+        'http://np32z.gyxza32.zbkjlky.com/a32/rj_wc1/jumeijia.apk',
+        '',
+        'V 1.2.3',
+        '1.修复一些小bug\n2.优化页面\n3.更新的内容是什么我也很想知道是什么',
+      ),
+      child: Text('弹框'),
+    );
+  }
+
+//  void showCustomDialog() {
+//
+//  }
 }

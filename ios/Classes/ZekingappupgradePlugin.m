@@ -47,9 +47,9 @@
           NSString * lineVersion = dic[@"version"];//版本号
           NSString * releaseNotes = dic[@"releaseNotes"];//更新说明
           NSString * trackViewUrl = dic[@"trackViewUrl"];//链接
-          NSLog(@"App store版本号:%@",lineVersion);
-          NSLog(@"更新说明:%@",releaseNotes);
-          NSLog(@"App下载链接:%@",trackViewUrl);
+//          NSLog(@"App store版本号:%@",lineVersion);
+//          NSLog(@"更新说明:%@",releaseNotes);
+//          NSLog(@"App下载链接:%@",trackViewUrl);
           
           result(@{
             @"lineVersion" :lineVersion,

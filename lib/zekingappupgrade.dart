@@ -6,7 +6,7 @@ import 'package:zekingappupgrade/zeking_package_info.dart';
 export 'package:zekingappupgrade/zeking_package_info.dart';
 export 'zeking_app_store_package_info.dart';
 
-class Zekingappupgrade {
+class ZekingAppUpgrade {
   static const MethodChannel _channel = const MethodChannel('zekingappupgrade');
 
   // 获取 应用名，包名，版本名称，版本号
@@ -67,5 +67,17 @@ class Zekingappupgrade {
 
   /// ======================== Android ========================
 
+  // 获取下载apk的目录位置
+  static Future<String> get androidDownloadPath async {
+    return  await _channel.invokeMethod('getApkDownloadPath');
+  }
+
+  // 安装Apk
+  static installAppForAndroid(String path) async {
+    Map<String, String> params = {
+      "path": path,
+    };
+    return await _channel.invokeMethod('install', params);
+  }
 
 }
