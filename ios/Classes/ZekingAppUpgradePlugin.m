@@ -1,11 +1,11 @@
 #import "ZekingappupgradePlugin.h"
 
-@implementation ZekingappupgradePlugin
+@implementation ZekingAppUpgradePlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"zekingappupgrade"
             binaryMessenger:[registrar messenger]];
-  ZekingappupgradePlugin* instance = [[ZekingappupgradePlugin alloc] init];
+  ZekingAppUpgradePlugin* instance = [[ZekingAppUpgradePlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 

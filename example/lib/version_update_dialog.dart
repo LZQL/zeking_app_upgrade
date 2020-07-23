@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:zekingappupgrade/zekingappupgrade.dart';
+import 'package:zekingappupgrade/zeking_app_upgrade.dart';
 
 /// 弹出 版本更新 dialog
 void showVersionUpdateDialog(
@@ -190,13 +190,15 @@ class _VersionUpdateWidgetState extends State<VersionUpdateWidget> {
         ));
   }
 
-  // 点击了 立即更新 按钮
+  // 点击了 立即更新 按钮 :这里演示企业版app的下载
   void clickUpdate() async {
     setState(() {
       showProgressWidget = true;
     });
 
     if (Platform.isIOS) {
+      Navigator.pop(context);
+      ZekingAppUpgrade.iosDownloadEnterpriseIpa(widget.iosDownUrl);
       return;
     }
 
@@ -209,29 +211,16 @@ class _VersionUpdateWidgetState extends State<VersionUpdateWidget> {
   /// 下载apk包
   ///
   _downloadApk(String url, String path) async {
-//    if (_downloadStatus == DownloadStatus.start ||
-//        _downloadStatus == DownloadStatus.downloading ||
-//        _downloadStatus == DownloadStatus.done) {
-//      print('当前下载状态：$_downloadStatus,不能重复下载。');
-//      return;
-//    }
-//
-//    _updateDownloadStatus(DownloadStatus.start);
+
     try {
       var dio = Dio();
       await dio.download(url, path, onReceiveProgress: (int count, int total) {
-//        if (total == -1) {
-//          downloadProgress = 0.01;
-//        } else {
+
         downloadProgress = count / total.toDouble();
-//        }
+
         setState(() {});
         if (downloadProgress == 1) {
           //下载完成，跳转到程序安装界面
-//          _updateDownloadStatus(DownloadStatus.done);
-//          Navigator.pop(context);
-//          FlutterUpgrade.installAppForAndroid(path);
-//          print('下载完成');
           Navigator.pop(context);
           ZekingAppUpgrade.installAppForAndroid(path);
         }
@@ -239,7 +228,6 @@ class _VersionUpdateWidgetState extends State<VersionUpdateWidget> {
     } catch (e) {
       print('$e');
       downloadProgress = 0;
-//      _updateDownloadStatus(DownloadStatus.error,error: e);
     }
   }
 }

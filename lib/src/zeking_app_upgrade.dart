@@ -1,10 +1,8 @@
-import 'dart:async';
+
 
 import 'package:flutter/services.dart';
-import 'package:zekingappupgrade/zeking_app_store_package_info.dart';
-import 'package:zekingappupgrade/zeking_package_info.dart';
-export 'package:zekingappupgrade/zeking_package_info.dart';
-export 'zeking_app_store_package_info.dart';
+
+import '../zeking_app_upgrade.dart';
 
 class ZekingAppUpgrade {
   static const MethodChannel _channel = const MethodChannel('zekingappupgrade');
@@ -12,7 +10,7 @@ class ZekingAppUpgrade {
   // 获取 应用名，包名，版本名称，版本号
   static Future<ZekingPackageInfo> get getPackageInfo async {
     final Map<String, dynamic> map =
-        await _channel.invokeMapMethod<String, dynamic>('getPackageInfo');
+    await _channel.invokeMapMethod<String, dynamic>('getPackageInfo');
 
     ZekingPackageInfo zekingPackageInfo = ZekingPackageInfo(
         map["appName"], map["packageName"], map['version'], map['buildNumber']);
@@ -30,7 +28,7 @@ class ZekingAppUpgrade {
     };
 
     final Map<String, dynamic> map =
-      await _channel.invokeMapMethod<String, dynamic>('iosGetAppStorePackageInfo',params);
+    await _channel.invokeMapMethod<String, dynamic>('iosGetAppStorePackageInfo',params);
 
     ZekingAppStorePackageInfo info = ZekingAppStorePackageInfo(
         map["lineVersion"], map["releaseNotes"], map['trackViewUrl']);

@@ -25,7 +25,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * ZekingappupgradePlugin
  */
-public class ZekingappupgradePlugin implements FlutterPlugin, MethodCallHandler {
+public class ZekingAppUpgradePlugin implements FlutterPlugin, MethodCallHandler {
 
     private Context applicationContext;
     private MethodChannel channel;
@@ -37,7 +37,7 @@ public class ZekingappupgradePlugin implements FlutterPlugin, MethodCallHandler 
 
     public static void registerWith(Registrar registrar) {
 
-        final ZekingappupgradePlugin instance = new ZekingappupgradePlugin();
+        final ZekingAppUpgradePlugin instance = new ZekingAppUpgradePlugin();
         instance.onAttachedToEngine(registrar.context(), registrar.messenger());
     }
 

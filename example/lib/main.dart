@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:zekingappupgrade/zekingappupgrade.dart';
-import 'package:zekingappupgrade_example/version_update_dialog.dart';
+
+import 'package:zekingappupgrade/zeking_app_upgrade.dart';
+import 'version_update_dialog.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -61,28 +63,27 @@ class _MyAppState extends State<MyApp> {
             Text('buildNumber: $buildNumber\n'),
             RaisedButton(
               onPressed: () {
-//                Zekingappupgrade.toAppStore('id1197227551');
-//                Zekingappupgrade.toAppStore('id629774477');
                 ZekingAppUpgrade.iosToAppStore('id393765873');
               },
               child: Text('跳转到AppStroe'),
             ),
             RaisedButton(
               onPressed: () {
+
                 ZekingAppUpgrade.iosDownloadEnterpriseIpa(
-                    'https://it-home.vip/test/manifest.plist');
-//                Zekingappupgrade.downloadIpa('itms-services://?action=download-manifest&url=https://it-home.vip/test/manifest.plist');
+                    '这里填写plist文件的服务器地址');
+
               },
               child: Text('下载企业级app'),
             ),
             RaisedButton(
               onPressed: getNewVersionName,
-              child: Text('获取最新的版本名称'),
+              child: Text('获取服务器plist文件里最新的版本名称'),
             ),
-            Text('新版本名称: $newVersionName\n'),
+            Text('服务器上的plist文件里的版本名称: $newVersionName\n'),
             RaisedButton(
               onPressed: getAppStorePackageInfo,
-              child: Text('通过appid获取appStroe上app的版本'),
+              child: Text('通过appid获取appStroe上已上架app的版本信息'),
             ),
             Text('AppStore上的应用信息: \n$appStoreInfo'),
             CustomDialogButtom(),
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
 
   void getNewVersionName() async {
     newVersionName = await ZekingAppUpgrade.iosGestNewVersion(
-        'https://it-home.vip/test/manifest.plist');
+        '这里填写plist文件的服务器地址');
     setState(() {});
   }
 

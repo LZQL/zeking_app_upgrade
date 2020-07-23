@@ -1,8 +1,8 @@
-name: zekingappupgrade
-description: A new Flutter plugin.
+name: zeking_app_upgrade
+description: App版本更新
 version: 0.0.1
-author:
-homepage:
+author: Zeking Lee <396298154@qq.com>
+homepage: https://github.com/LZQL/zeking_app_upgrade
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -29,9 +29,9 @@ flutter:
     platforms:
       android:
         package: com.zeking.zekingappupgrade
-        pluginClass: ZekingappupgradePlugin
+        pluginClass: ZekingAppUpgradePlugin
       ios:
-        pluginClass: ZekingappupgradePlugin
+        pluginClass: ZekingAppUpgradePlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
