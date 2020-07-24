@@ -1,7 +1,6 @@
 name: zeking_app_upgrade
-description: App版本更新
-version: 0.0.1
-author: Zeking Lee <396298154@qq.com>
+description: Flutter App版本更新
+version: 0.0.3
 homepage: https://github.com/LZQL/zeking_app_upgrade
 
 environment:
