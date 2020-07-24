@@ -1,6 +1,6 @@
 name: zeking_app_upgrade
 description: Flutter App版本更新
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/LZQL/zeking_app_upgrade
 
 environment:
